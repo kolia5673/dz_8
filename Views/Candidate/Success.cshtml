@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Резюме надіслано";
+}
+
+<div class="container mt-4">
+    <h1>Резюме успішно надіслано!</h1>
+
+    <p>
+        Ваше резюме було завантажено та передано HR.
+    </p>
+
+    <a asp-controller="Candidate"
+       asp-action="Index"
+       class="btn btn-primary">
+        Надіслати ще одне резюме
+    </a>
+</div>

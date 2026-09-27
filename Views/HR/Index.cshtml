@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MyHRExample.Models.Resume>
+
+@{
+    ViewData["Title"] = "Резюме кандидатів";
+}
+
+<div class="container mt-4">
+
+    <h1>Резюме кандидатів</h1>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            Поки що отриманих резюме немає.
+        </div>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped mt-3">
+
+            <thead>
+                <tr>
+                    <th>Кандидат</th>
+                    <th>Контактні дані</th>
+                    <th>Назва файла</th>
+                    <th>Дата завантаження</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var resume in Model)
+                {
+                    <tr>
+                        <td>@resume.CandidateName</td>
+
+                        <td>@resume.ContactInfo</td>
+
+                        <td>@resume.FileName</td>
+
+                        <td>
+                            @resume.UploadedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")
+                        </td>
+
+                        <td>
+                            <a asp-action="Open"
+                               asp-route-id="@resume.Id"
+                               target="_blank"
+                               class="btn btn-primary btn-sm">
+                                Відкрити
+                            </a>
+
+                            <a asp-action="Delete"
+                               asp-route-id="@resume.Id"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Видалити це резюме?');">
+                                Видалити
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    }
+
+</div>

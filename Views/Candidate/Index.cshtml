@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Подати резюме";
+}
+
+<div class="container mt-4">
+    <h1>Подати резюме</h1>
+
+    <form asp-action="Index"
+          method="post"
+          enctype="multipart/form-data">
+
+        @Html.AntiForgeryToken()
+
+        <div class="mb-3">
+            <label class="form-label">Ім'я кандидата</label>
+            <input type="text"
+                   name="candidateName"
+                   class="form-control"
+                   required />
+            <span class="text-danger">
+                @Html.ValidationMessage("candidateName")
+            </span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Контактні дані</label>
+            <input type="text"
+                   name="contactInfo"
+                   class="form-control"
+                   placeholder="Email або телефон"
+                   required />
+            <span class="text-danger">
+                @Html.ValidationMessage("contactInfo")
+            </span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Резюме (PDF)</label>
+            <input type="file"
+                   name="resumeFile"
+                   class="form-control"
+                   accept=".pdf,application/pdf"
+                   required />
+            <span class="text-danger">
+                @Html.ValidationMessage("resumeFile")
+            </span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Надіслати резюме
+        </button>
+    </form>
+</div>
